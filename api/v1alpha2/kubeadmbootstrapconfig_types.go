@@ -36,6 +36,14 @@ type KubeadmConfigSpec struct {
 	// AdditionalUserDataFiles specifies extra files to be passed to user_data upon creation.
 	// +optional
 	AdditionalUserDataFiles []Files `json:"additionalUserDataFiles,omitempty"`
+	// AdditionalPreCommands specifies extra commands to be passed to user_data upon creation
+	// which run before kubeadm runs
+	// +optional
+	AdditionalPreCommands []string `json:"additionalPreCommands,omitempty"`
+	// AdditionalPostCommands specifies extra commands to be passed to user_data upon creation
+	// which run after kubeadm runs
+	// +optional
+	AdditionalPostCommands []string `json:"additionalPostCommands,omitempty"`
 }
 
 // KubeadmConfigStatus defines the observed state of KubeadmConfig

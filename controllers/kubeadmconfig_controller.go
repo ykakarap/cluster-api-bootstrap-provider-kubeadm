@@ -180,7 +180,9 @@ func (r *KubeadmConfigReconciler) Reconcile(req ctrl.Request) (_ ctrl.Result, re
 
 		cloudInitData, err := cloudinit.NewInitControlPlane(&cloudinit.ControlPlaneInput{
 			BaseUserData: cloudinit.BaseUserData{
-				AdditionalFiles: config.Spec.AdditionalUserDataFiles,
+				AdditionalFiles:        config.Spec.AdditionalUserDataFiles,
+				AdditionalPreCommands:  config.Spec.AdditionalPreCommands,
+				AdditionalPostCommands: config.Spec.AdditionalPostCommands,
 			},
 			InitConfiguration:    string(initdata),
 			ClusterConfiguration: string(clusterdata),
@@ -236,7 +238,9 @@ func (r *KubeadmConfigReconciler) Reconcile(req ctrl.Request) (_ ctrl.Result, re
 			JoinConfiguration: string(joinBytes),
 			Certificates:      certificates,
 			BaseUserData: cloudinit.BaseUserData{
-				AdditionalFiles: config.Spec.AdditionalUserDataFiles,
+				AdditionalFiles:        config.Spec.AdditionalUserDataFiles,
+				AdditionalPreCommands:  config.Spec.AdditionalPreCommands,
+				AdditionalPostCommands: config.Spec.AdditionalPostCommands,
 			},
 		})
 		if err != nil {
@@ -251,7 +255,9 @@ func (r *KubeadmConfigReconciler) Reconcile(req ctrl.Request) (_ ctrl.Result, re
 
 	joinData, err := cloudinit.NewNode(&cloudinit.NodeInput{
 		BaseUserData: cloudinit.BaseUserData{
-			AdditionalFiles: config.Spec.AdditionalUserDataFiles,
+			AdditionalFiles:        config.Spec.AdditionalUserDataFiles,
+			AdditionalPreCommands:  config.Spec.AdditionalPreCommands,
+			AdditionalPostCommands: config.Spec.AdditionalPostCommands,
 		},
 		JoinConfiguration: string(joinBytes),
 	})

@@ -32,6 +32,18 @@ spec:
             Either ClusterConfiguration and InitConfiguration should be defined or
             the JoinConfiguration should be defined.
           properties:
+            additionalPostCommands:
+              description: AdditionalPostCommands specifies extra commands to be passed
+                to user_data upon creation which run after kubeadm runs
+              items:
+                type: string
+              type: array
+            additionalPreCommands:
+              description: AdditionalPreCommands specifies extra commands to be passed
+                to user_data upon creation which run before kubeadm runs
+              items:
+                type: string
+              type: array
             additionalUserDataFiles:
               description: AdditionalUserDataFiles specifies extra files to be passed
                 to user_data upon creation.
